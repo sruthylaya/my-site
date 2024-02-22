@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-This post title
+{{ post.title }}
 {% endblock %}
 
 {% block css_files %}
@@ -10,20 +10,25 @@ This post title
 {% endblock %}
 
 {% block content %}
-    <section id="summary">
-        <h2>Post Title<h2>
-        <article>
-            <img src="{% static "blog/images/mountain.jpg" %}" alt="Post Title" />
-            <address>By Maxmillian</address>
-            <div>
-                Last updated on <time>July 10th</time>
-            </div>
-        </article>                  
-    </section>
+<section id="summary">
+    <h2>{{ Post.title }}</h2>
+    <div>
+        {% for tag in post_tags %}
+            <span class="tag">{{ tag.caption }}</span>
+        {% endfor %} 
+    </div>  
+    <article>
+        <img src="{% static "blog/images/"|add:post.image_name %}" alt="{{ Post.title }}" />
+        <address>By <a href="mailto:{{ post.author.email_address }}">{{ post.author }}</a></address>
+        <div>
+            Last updated on <time>{{ post.date|date:"d M Y" }}</time></div>
+        </div>
+    </article>                  
+</section>
 
-    <main>
-        <p>
-            Lorem ipsum dolor sit amet 
-        </p>
+<main>
+    <p>
+        {{ post.content|linebreaks }}
+    </p>
 </main>
 {% endblock %}    
