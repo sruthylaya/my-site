@@ -15,7 +15,7 @@
 .post a:active {
     transform: scale(1.1);
     background-color: #0804d6;
-    color: white;
+    color: rgb(234, 168, 168);
 }
 
 .post img {
@@ -39,5 +39,5 @@
 
 .post:hover time,
 .post:active time {
-    color: white;
+    color: rgb(175, 127, 127);
 }
